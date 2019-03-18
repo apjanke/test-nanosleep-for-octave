@@ -1,0 +1,8 @@
+AC_CONFIG_HEADERS([config.h])
+
+AC_PROG_CC
+gl_EARLY
+
+gl_INIT
+
+AC_CONFIG_FILES(lib/Makefile)
