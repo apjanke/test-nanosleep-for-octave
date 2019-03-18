@@ -1,5 +1,5 @@
-# gnulib-common.m4 serial 41
-dnl Copyright (C) 2007-2018 Free Software Foundation, Inc.
+# gnulib-common.m4 serial 42
+dnl Copyright (C) 2007-2019 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
 dnl with or without modifications, as long as this notice is preserved.
@@ -17,7 +17,8 @@ AC_DEFUN([gl_COMMON_BODY], [
   AH_VERBATIM([_Noreturn],
 [/* The _Noreturn keyword of C11.  */
 #ifndef _Noreturn
-# if 201103 <= (defined __cplusplus ? __cplusplus : 0)
+# if (201103 <= (defined __cplusplus ? __cplusplus : 0) \
+      && (!defined __GNUC__ || 4 < __GNUC__ + (8 <= __GNUC_MINOR__)))
 #  define _Noreturn [[noreturn]]
 # elif (201112 <= (defined __STDC_VERSION__ ? __STDC_VERSION__ : 0) \
         || 4 < __GNUC__ + (7 <= __GNUC_MINOR__))

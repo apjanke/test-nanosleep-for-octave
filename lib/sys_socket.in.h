@@ -1,6 +1,6 @@
 /* Provide a sys/socket header file for systems lacking it (read: MinGW)
    and for systems where it is incomplete.
-   Copyright (C) 2005-2018 Free Software Foundation, Inc.
+   Copyright (C) 2005-2019 Free Software Foundation, Inc.
    Written by Simon Josefsson.
 
    This program is free software; you can redistribute it and/or modify
@@ -169,7 +169,7 @@ struct sockaddr_storage
    code may not run on older Windows releases then.  My Windows 2000
    box was not able to run the code, for example.  The situation is
    slightly confusing because
-   <https://msdn.microsoft.com/en-us/library/ms738520>
+   <https://docs.microsoft.com/en-us/windows/desktop/api/ws2tcpip/nf-ws2tcpip-getaddrinfo>
    suggests that getaddrinfo should be available on all Windows
    releases. */
 

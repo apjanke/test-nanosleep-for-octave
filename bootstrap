@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gnulib_modules=nanosleep
+
+./gnulib/gnulib-tool --import $gnulib_modules
