@@ -27,6 +27,7 @@ DEFUN_DLD (delay, args, /* nargout */,
   int n = 100;
   int delay = 200;
   double delay_s = double (delay) / 1000;
+  double max_run_time_s = 60.0;
 
   time_t tv_sec = 0;
   long tv_nsec = delay * 1000000;
@@ -50,6 +51,7 @@ DEFUN_DLD (delay, args, /* nargout */,
     }
 
   int dot_was_last = 0;
+  double total_elapsed_s = 0.0;
   for (int i = 0; i < n; i++)
     {
       high_resolution_clock::time_point t0 = high_resolution_clock::now();
@@ -70,6 +72,7 @@ DEFUN_DLD (delay, args, /* nargout */,
       high_resolution_clock::time_point t1 = high_resolution_clock::now();
       duration<double> time_span = duration_cast<duration<double> >(t1 - t0);
       double elapsed_s = time_span.count();
+      total_elapsed_s += elapsed_s;
 
       if (elapsed_s > delay_s * 2)
         {
@@ -83,6 +86,11 @@ DEFUN_DLD (delay, args, /* nargout */,
           printf (".");
           fflush (0);
           dot_was_last = 1;
+        }
+      if (total_elapsed_s > max_run_time_s)
+        {
+          printf ("\nAborting because it's taking too darn long.\n");
+          break;
         }
     }
     printf ("\n");
