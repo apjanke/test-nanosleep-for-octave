@@ -2,3 +2,20 @@ configure
 config.h.in
 aclocal.m4
 
+Makefile.in
+Makefile
+compile
+config.guess
+config.h
+config.status
+config.sub
+depcomp
+install-sh
+lib/.deps
+lib/Makefile
+lib/Makefile.in
+missing
+src/.deps
+src/.dirstamp
+stamp-h1
+INSTALL
