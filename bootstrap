@@ -4,4 +4,4 @@ gnulib_modules=nanosleep
 
 ./gnulib/gnulib-tool --import $gnulib_modules
 
-autoreconf --verbose -I m4
+autoreconf --install --verbose -I m4
