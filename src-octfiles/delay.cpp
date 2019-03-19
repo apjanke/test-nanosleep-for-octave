@@ -22,7 +22,7 @@ DEFUN_DLD (delay, args, /* nargout */,
 
   octave_value_list retval;
 
-	using namespace std::chrono;
+  using namespace std::chrono;
 
   int n = 100;
   int delay = 200;
