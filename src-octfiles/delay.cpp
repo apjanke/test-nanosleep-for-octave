@@ -24,8 +24,9 @@ DEFUN_DLD (delay, args, /* nargout */,
 
 	using namespace std::chrono;
 
-	int n = 100;
-	int delay = 200;
+  int n = 100;
+  int delay = 200;
+  double delay_s = double (delay) / 1000;
 
   time_t tv_sec = 0;
   long tv_nsec = delay * 1000000;
@@ -35,22 +36,56 @@ DEFUN_DLD (delay, args, /* nargout */,
 
   struct timespec rem;
 
-	for (int i = 0; i < n; i++)
+  if (option == 1)
+    {
+      printf ("Using octave::sleep (%f, true)\n", delay_s);
+    }
+  else if (option == 2)
+    {
+      printf ("Using octave::sleep (%f, false)\n", delay_s);
+    }
+  else
+    {
+      printf ("Using nanosleep (&delay_timespec, &rem);\n");
+    }
+
+  int dot_was_last = 0;
+  for (int i = 0; i < n; i++)
     {
       high_resolution_clock::time_point t0 = high_resolution_clock::now();
 
       if (option == 1)
-        octave::sleep (0.2, true);
+        {
+          octave::sleep (delay_s, true);
+        }
       else if (option == 2)
-        octave::sleep (0.2, false);
+        {
+          octave::sleep (delay_s, false);
+        }
       else
-        nanosleep (&delay_timespec, &rem);
+        {
+          nanosleep (&delay_timespec, &rem);
+        }
 
       high_resolution_clock::time_point t1 = high_resolution_clock::now();
       duration<double> time_span = duration_cast<duration<double> >(t1 - t0);
+      double elapsed_s = time_span.count();
 
-      printf ("Step %4d: elapsed = %f\n", i, time_span.count());
+      if (elapsed_s > delay_s * 2)
+        {
+          if (dot_was_last)
+            printf ("\n");
+          printf ("Step %4d: elapsed = %f\n", i, elapsed_s);
+          dot_was_last = 0;
+        }
+      else 
+        {
+          printf (".");
+          fflush (0);
+          dot_was_last = 1;
+        }
     }
+    printf ("\n");
 
   return retval;
 }
