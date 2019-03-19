@@ -19,3 +19,7 @@ src/.deps
 src/.dirstamp
 stamp-h1
 INSTALL
+
+lib/*.o
+src/*.o
+src/my_nanosleep_test
