@@ -23,3 +23,5 @@ INSTALL
 lib/*.o
 src/*.o
 src/my_nanosleep_test
+src-octfiles/*.o
+src-octfiles/*.oct
