@@ -41,7 +41,7 @@ DEFUN_DLD (delay, args, /* nargout */,
 
       if (option == 1)
         octave::sleep (0.2, true);
-      else if (option = 2)
+      else if (option == 2)
         octave::sleep (0.2, false);
       else
         nanosleep (&delay_timespec, &rem);
